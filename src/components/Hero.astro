@@ -6,43 +6,63 @@ import HeroIcons from "./HeroIcons.astro";
 <section class="hero" id="hero" transition:persist>
   <div class="hero__contenedor">
     <div class="hero__saludo">
+      <!-- Adicionamos uma ID específica para facilitar a manipulação via JS -->
       <h1
         class="hero__titulo"
         id="titulo-saludo"
         data-section="hero"
         data-value="heroTitulo"
       >
-        Hi! I'm Andre<span class="flicker-in-1 span__dark">Y</span>
+        Hi! I'm <span id="name-container">Andre<span class="flicker-in-1 span__dark">Y</span></span>
       </h1>
-      <h2
-        class="hero__subtitulo"
-        id="subtitulo"
-        data-section="hero"
-        data-value="heroSubtitulo"
-      >
-        ≥ Projects developer in <span class="hero__subtitulo--span"
-          >Brazil</span
-        >
+      
+      <h2 class="hero__subtitulo" id="subtitulo" data-section="hero" data-value="heroSubtitulo">
+        ≥ Projects developer in <span class="hero__subtitulo--span">Brazil</span>
       </h2>
     </div>
     <aside class="side__container">
-      <img
-        class="side__img img__ligth"
-        src="./img/anddev.png"
-        alt="Sofidev profile photo"
-      />
-      <img
-        class="side__img img__dark"
-        src="./img/anddev.png"
-        alt="Sofidev profile photo"
-      />
-      <img
-        class="side__img img__damage"
-        src="./img/anddev.png"
-        alt="Sofidev profile photo"
-      />
+      <img class="side__img img__ligth" src="./img/anddev.png" alt="Andre profile photo" />
+      <img class="side__img img__dark" src="./img/anddev.png" alt="Andre profile photo" />
+      <img class="side__img img__damage" src="./img/anddev.png" alt="Andre profile photo" />
       <HeroIcons />
     </aside>
   </div>
   <DarkBg />
 </section>
+
+<script>
+  // Lógica de animação de mutação
+  const container = document.getElementById('name-container');
+  
+  function mutateName() {
+    if (!container) return;
+
+    // 1. Início: AndreY (espera 3 segundos)
+    setTimeout(() => {
+      // 2. Transforma para AYpslon
+      // O 'ndre' some, o 'A' e 'Y' se juntam e surge 'pslon'
+      container.innerHTML = 'A<span class="flicker-in-1 span__dark">Y</span>pslon';
+      container.style.transition = "all 0.5s ease";
+      
+      // 3. Espera mais 3 segundos e volta ao original
+      setTimeout(() => {
+        container.innerHTML = 'Andre<span class="flicker-in-1 span__dark">Y</span>';
+        mutateName(); // Reinicia o ciclo
+      }, 3000);
+      
+    }, 3000);
+  }
+
+  // Inicia a animação quando o Astro carrega a página
+  document.addEventListener('astro:page-load', mutateName);
+  // Fallback para carregamento inicial
+  mutateName();
+</script>
+
+<style>
+  /* Adicione isso para a transição não ser seca */
+  #name-container {
+    display: inline-block;
+    transition: all 0.5s ease-in-out;
+  }
+</style>
