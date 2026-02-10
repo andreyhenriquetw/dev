@@ -30,65 +30,85 @@ import HeroIcons from "./HeroIcons.astro";
 <style>
   .name-wrapper {
     display: inline-flex;
-    align-items: center;
-    overflow: hidden;
+    align-items: baseline; /* Alinha melhor as letras na linha de base */
+    overflow: visible; /* Mudamos para visible para não cortar letras como 'n' ou 'y' */
     vertical-align: bottom;
   }
 
   .expandable {
     display: inline-block;
-    max-width: 200px; /* Tamanho máximo aproximado */
+    max-width: 500px; /* Aumentamos para 500px para garantir que caiba em 4k/Desktop */
     opacity: 1;
-    transition: max-width 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease, margin 0.8s ease;
+    transition: max-width 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.5s ease, 
+                transform 0.8s ease;
     white-space: nowrap;
+    overflow: hidden; /* O overflow hidden fica apenas no que expande/encolhe */
   }
 
   /* Estado quando a letra "colhe" para dentro */
   .collapsed {
-    max-width: 0px;
+    max-width: 0px !important;
     opacity: 0;
     margin: 0;
     pointer-events: none;
   }
 
   .hidden-text {
-    max-width: 0px;
+    max-width: 0px !important;
     opacity: 0;
   }
 </style>
 
+
 <script>
+  declare global {
+    interface Window {
+      mutationStarted?: boolean;
+    }
+  }
+
   function startMutation() {
     const middle = document.getElementById('middle-text');
     const suffix = document.getElementById('suffix-text');
 
     if (!middle || !suffix) return;
 
-    setInterval(() => {
-      // Passo 1: Encolhe o "ndre" (Y encosta no A)
+    const runCycle = () => {
+      // 1. Inicia encolhendo o "ndre" (Y encosta no A)
       middle.classList.add('collapsed');
       
       setTimeout(() => {
-        // Passo 2: Expande o "pslon" para fora do Y
+        // 2. Expande o "pslon" para fora do Y
         suffix.classList.remove('hidden-text');
         
+        // 3. FICA PARADO EM "AYpslon" POR 5 SEGUNDOS
         setTimeout(() => {
-          // Passo 3: Encolhe o "pslon" de volta
+          // 4. Encolhe o "pslon" de volta para o Y
           suffix.classList.add('hidden-text');
           
           setTimeout(() => {
-            // Passo 4: Expande o "ndre" original
+            // 5. Expande o "ndre" original de volta
             middle.classList.remove('collapsed');
-          }, 800); // Tempo para o pslon sumir antes do ndre voltar
-          
-        }, 2500); // Tempo que fica como AYpslon
+            
+            // 6. ESPERA 5 SEGUNDOS EM "AndreY" ANTES DE RECOMEÇAR O CICLO
+            setTimeout(runCycle, 5000); 
+            
+          }, 800); // Tempo da animação de saída do pslon
+        }, 5000); // Tempo de permanência no AYpslon
         
-      }, 900); // Tempo da animação de encolher/encostar
+      }, 900); // Tempo da animação de encolhimento do ndre
+    };
 
-    }, 7000); // Ciclo total (ajuste conforme necessário)
+    // Inicia o primeiro ciclo após 5 segundos da página aberta
+    setTimeout(runCycle, 7000);
   }
 
-  // Inicia no Astro
+  // Suporte para Astro View Transitions e carregamento normal
   document.addEventListener('astro:page-load', startMutation);
-  startMutation();
+  if (!window.mutationStarted) {
+    startMutation();
+    window.mutationStarted = true;
+  }
 </script>
+
