@@ -42,7 +42,10 @@ const portafolioData = [
     repoURL: "https://github.com/",
     anim: "fade-right",
   },
+
   {
+    /*
+    {
     imgSrc: "../img/portfolio_img/SASS.webp",
     titulo: "Eco Store",
     skills: ["Sass", "JavaScript"],
@@ -70,6 +73,8 @@ const portafolioData = [
     demoURL: "https://sofidevo.github.io/encriptador-mensajes/",
     repoURL: "https://github.com/SofiDevO/encriptador-mensajes",
     anim: "fade-up",
+  },
+    */
   },
 ];
 
