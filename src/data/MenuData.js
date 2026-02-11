@@ -17,7 +17,7 @@ export const portfolio = [
   { href: "/", text: "Home", target: "_self" },
   { href: "/blog", text: "Blog", target: "_self" },
   { href: "/about", text: "About Me", target: "_self" },
-  { href: "https://github.com/SofiDevO", text: "My GitHub", target: "_blank" },
+  { href: "https://github.", text: "My GitHub", target: "_blank" },
 ];
 export const blog = [
   { href: "/", text: "Home", target: "_self" },

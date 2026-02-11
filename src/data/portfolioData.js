@@ -1,40 +1,45 @@
 const portafolioData = [
   {
-    imgSrc: "../img/portfolio_img/fiancee.jpg",
-    titulo: "Finance AI",
+    imgSrc: "../img/portfolio_img/camptreinoo.jpg",
+    titulo: "Sistema de Gestão de Treinos",
     skills: ["React", "StyledComponents"],
     descripcion:
-      "Final project for the One Oracle Next Education Program. Educational programming video website demonstrating CRUD requests.",
-    demoURL:
-      "https://www.figma.com/design/raSkldJpsPX5V1KYCLBhi9/AY-Finance--LIVE-?node-id=57-1074&p=f",
+      "Sistema para gerenciamento de treinos com cadastro, edição, listagem e exclusão de exercícios.",
+    demoURL: "",
     repoURL: "https://github.com/",
     anim: "fade-right",
   },
   {
-    imgSrc: "../img/portfolio_img/alura_geek.webp",
-    titulo: "SAAS Barber",
+    imgSrc: "../img/portfolio_img/campfinance.png",
+    titulo: "Sistema Financeiro",
     skills: ["JavaScript", "CSS"],
-    descripcion: " CRUD operations using HTTP requests.",
-    demoURL: "https://alura-geek-ruddy.vercel.app/",
-    repoURL: "https://github.com/SofiDevO/alura-geek",
+    descripcion:
+      "Sistema Financeiro de IA para análise e previsão de tendências.",
+    demoURL:
+      "https://www.figma.com/design/raSkldJpsPX5V1KYCLBhi9/AY-Finance--LIVE-?node-id=57-1074&p=f",
+    repoURL: "https://github.com",
     anim: "fade-up",
   },
   {
-    imgSrc: "../img/portfolio_img//react_org.webp",
-    titulo: "React ORG",
+    imgSrc: "../img/portfolio_img/campclinica.png",
+    titulo: "SAAS de agendamento Clínicas",
     skills: ["React", "CSS"],
-    descripcion: "React application to manage your team members.",
-    demoURL: "https://react-org-delta.vercel.app/",
-    repoURL: "https://github.com/SofiDevO/react-org",
+    descripcion:
+      "Plataforma SaaS para gestão de agendamentos em clínicas, com controle de horários, pacientes e profissionais.",
+    demoURL:
+      "https://www.figma.com/design/MTcJyCCsJ1GPoifX9lsREb/dr.agenda?node-id=356-126&p=f&t=yPBtB8dwI9MbvTjA-0",
+    repoURL: "https://github.com",
     anim: "fade-left",
   },
   {
-    imgSrc: "../img/portfolio_img//portfolio.webp",
-    titulo: "My Portfolio",
+    imgSrc: "../img/portfolio_img/campbarber.png",
+    titulo: "SAAS para Barbearia",
     skills: ["Astro", "React", "JavaScript"],
-    descripcion: "Just the repository of my portfolio on GitHub.",
-    demoURL: "https://sofidev-portfolio-astro-delta.vercel.app/",
-    repoURL: "https://github.com/SofiDevO/sofidev-portfolio-astro",
+    descripcion:
+      "Plataforma SaaS para agendamento em barbearias, com gestão de horários, clientes e serviços.",
+    demoURL:
+      "https://www.figma.com/design/aqjp8ZRtMOQxbXXFQ0NaL8/AYpslon-5.0--Live--?node-id=1626-6355&t=9kcgust1BQe2AH5S-0",
+    repoURL: "https://github.com/",
     anim: "fade-right",
   },
   {
