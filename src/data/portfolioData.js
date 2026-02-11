@@ -43,8 +43,7 @@ const portafolioData = [
     anim: "fade-right",
   },
 
-  {
-    /*
+  /*
     {
     imgSrc: "../img/portfolio_img/SASS.webp",
     titulo: "Eco Store",
@@ -75,7 +74,6 @@ const portafolioData = [
     anim: "fade-up",
   },
     */
-  },
 ];
 
 const skillIcons = {
