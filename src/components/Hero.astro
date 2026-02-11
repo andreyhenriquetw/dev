@@ -6,109 +6,43 @@ import HeroIcons from "./HeroIcons.astro";
 <section class="hero" id="hero" transition:persist>
   <div class="hero__contenedor">
     <div class="hero__saludo">
-      <h1 class="hero__titulo" id="titulo-saludo">
-        Hi! I'm 
-        <span class="name-wrapper">
-          A<span id="middle-text" class="expandable">ndre</span><span class="flicker-in-1 span__dark">Y</span><span id="suffix-text" class="expandable hidden-text">pslon</span>
-        </span>
+      <h1
+        class="hero__titulo"
+        id="titulo-saludo"
+        data-section="hero"
+        data-value="heroTitulo"
+      >
+        Hi! I'm Andre<span class="flicker-in-1 span__dark">Y</span>
       </h1>
-      
-      <h2 class="hero__subtitulo" id="subtitulo">
-        ≥ Projects developer in <span class="hero__subtitulo--span">Brazil</span>
+      <h2
+        class="hero__subtitulo"
+        id="subtitulo"
+        data-section="hero"
+        data-value="heroSubtitulo"
+      >
+        ≥ Projects developer in <span class="hero__subtitulo--span"
+          >Brazil</span
+        >
       </h2>
     </div>
     <aside class="side__container">
-      <img class="side__img img__ligth" src="./img/anddev.png" alt="Andre profile photo" />
-      <img class="side__img img__dark" src="./img/anddev.png" alt="Andre profile photo" />
-      <img class="side__img img__damage" src="./img/anddev.png" alt="Andre profile photo" />
+      <img
+        class="side__img img__ligth"
+        src="./img/anddev.png"
+        alt="Sofidev profile photo"
+      />
+      <img
+        class="side__img img__dark"
+        src="./img/anddev.png"
+        alt="Sofidev profile photo"
+      />
+      <img
+        class="side__img img__damage"
+        src="./img/anddev.png"
+        alt="Sofidev profile photo"
+      />
       <HeroIcons />
     </aside>
   </div>
   <DarkBg />
 </section>
-
-<style>
-  .name-wrapper {
-    display: inline-flex;
-    align-items: baseline; /* Alinha melhor as letras na linha de base */
-    overflow: visible; /* Mudamos para visible para não cortar letras como 'n' ou 'y' */
-    vertical-align: bottom;
-  }
-
-  .expandable {
-    display: inline-block;
-    max-width: 500px; /* Aumentamos para 500px para garantir que caiba em 4k/Desktop */
-    opacity: 1;
-    transition: max-width 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
-                opacity 0.5s ease, 
-                transform 0.8s ease;
-    white-space: nowrap;
-    overflow: hidden; /* O overflow hidden fica apenas no que expande/encolhe */
-  }
-
-  /* Estado quando a letra "colhe" para dentro */
-  .collapsed {
-    max-width: 0px !important;
-    opacity: 0;
-    margin: 0;
-    pointer-events: none;
-  }
-
-  .hidden-text {
-    max-width: 0px !important;
-    opacity: 0;
-  }
-</style>
-
-
-<script>
-  declare global {
-    interface Window {
-      mutationStarted?: boolean;
-    }
-  }
-
-  function startMutation() {
-    const middle = document.getElementById('middle-text');
-    const suffix = document.getElementById('suffix-text');
-
-    if (!middle || !suffix) return;
-
-    const runCycle = () => {
-      // 1. Inicia encolhendo o "ndre" (Y encosta no A)
-      middle.classList.add('collapsed');
-      
-      setTimeout(() => {
-        // 2. Expande o "pslon" para fora do Y
-        suffix.classList.remove('hidden-text');
-        
-        // 3. FICA PARADO EM "AYpslon" POR 5 SEGUNDOS
-        setTimeout(() => {
-          // 4. Encolhe o "pslon" de volta para o Y
-          suffix.classList.add('hidden-text');
-          
-          setTimeout(() => {
-            // 5. Expande o "ndre" original de volta
-            middle.classList.remove('collapsed');
-            
-            // 6. ESPERA 5 SEGUNDOS EM "AndreY" ANTES DE RECOMEÇAR O CICLO
-            setTimeout(runCycle, 5000); 
-            
-          }, 800); // Tempo da animação de saída do pslon
-        }, 5000); // Tempo de permanência no AYpslon
-        
-      }, 900); // Tempo da animação de encolhimento do ndre
-    };
-
-    // Inicia o primeiro ciclo após 5 segundos da página aberta
-    setTimeout(runCycle, 7000);
-  }
-
-  // Suporte para Astro View Transitions e carregamento normal
-  document.addEventListener('astro:page-load', startMutation);
-  if (!window.mutationStarted) {
-    startMutation();
-    window.mutationStarted = true;
-  }
-</script>
-
